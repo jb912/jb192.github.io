@@ -25,11 +25,7 @@
         margin-bottom: 8px;
       }
 
-      p {
-        margin: 0;
-      }
-
-      /* Countdown timer */
+      /* Countdown */
       .countdown {
         margin-top: 12px;
         font-family: "Courier New", monospace;
@@ -38,7 +34,7 @@
         white-space: nowrap;
       }
 
-      /* TRUE seamless scrolling text */
+      /* ===== SEAMLESS MARQUEE ===== */
       .scroll-container {
         width: 100%;
         overflow: hidden;
@@ -47,21 +43,20 @@
 
       .scroll-track {
         display: flex;
-        width: max-content;
-        animation: scroll-left 8s linear infinite;
+        white-space: nowrap;
+        animation: marquee 6s linear infinite;
       }
 
       .scroll-track span {
-        white-space: nowrap;
         padding-right: 48px;
       }
 
-      @keyframes scroll-left {
+      @keyframes marquee {
         from {
           transform: translateX(0);
         }
         to {
-          transform: translateX(-33.333%);
+          transform: translateX(-50%);
         }
       }
     </style>
@@ -76,7 +71,6 @@
       <div class="scroll-track">
         <span>Clippings come to those who Stray</span>
         <span>Clippings come to those who Stray</span>
-        <span>Clippings come to those who Stray</span>
       </div>
     </div>
 
@@ -84,34 +78,29 @@
       // Countdown target: midnight after 28 Feb (1 March 00:00)
       const targetDate = new Date("2026-03-01T00:00:00").getTime();
 
-      function pad2(num) {
-        return String(num).padStart(2, "0").slice(-2);
+      function pad2(n) {
+        return String(n).padStart(2, "0").slice(-2);
       }
 
       function updateCountdown() {
         const now = Date.now();
         let diff = targetDate - now;
-
         if (diff < 0) diff = 0;
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 100;
-        diff %= 1000 * 60 * 60 * 24;
+        const days = Math.floor(diff / 86400000) % 100;
+        diff %= 86400000;
 
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        diff %= 1000 * 60 * 60;
+        const hours = Math.floor(diff / 3600000);
+        diff %= 3600000;
 
-        const minutes = Math.floor(diff / (1000 * 60));
-        diff %= 1000 * 60;
+        const minutes = Math.floor(diff / 60000);
+        diff %= 60000;
 
         const seconds = Math.floor(diff / 1000);
-        const milliseconds = Math.floor((diff % 1000) / 10);
+        const ms = Math.floor((diff % 1000) / 10);
 
         document.getElementById("countdown").textContent =
-          `${pad2(days)}:` +
-          `${pad2(hours)}:` +
-          `${pad2(minutes)}:` +
-          `${pad2(seconds)}:` +
-          `${pad2(milliseconds)}`;
+          `${pad2(days)}:${pad2(hours)}:${pad2(minutes)}:${pad2(seconds)}:${pad2(ms)}`;
       }
 
       setInterval(updateCountdown, 50);
