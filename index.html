@@ -38,25 +38,29 @@
         white-space: nowrap;
       }
 
-      /* Scrolling tagline */
+      /* Seamless scrolling tagline */
       .scroll-container {
         width: 100%;
         overflow: hidden;
         margin-top: 40px;
       }
 
-      .scroll-text {
-        display: inline-block;
+      .scroll-track {
+        display: inline-flex;
         white-space: nowrap;
-        animation: scroll-left 3s linear infinite; /* much faster */
+        animation: scroll-left 8s linear infinite;
+      }
+
+      .scroll-track span {
+        padding-right: 48px;
       }
 
       @keyframes scroll-left {
         from {
-          transform: translateX(100%);
+          transform: translateX(0);
         }
         to {
-          transform: translateX(-100%);
+          transform: translateX(-50%);
         }
       }
     </style>
@@ -64,11 +68,15 @@
 
   <body>
     <h1>Stray Clippings</h1>
+    
 
     <div class="countdown" id="countdown"></div>
 
     <div class="scroll-container">
-      <p class="scroll-text">Clippings come to those who Stray</p>
+      <div class="scroll-track">
+        <span>Clippings come to those who Stray</span>
+        <span>Clippings come to those who Stray</span>
+      </div>
     </div>
 
     <script>
