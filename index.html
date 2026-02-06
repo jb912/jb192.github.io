@@ -1,110 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Stray Clippings</title>
+<head>
+  <meta charset="UTF-8" />
+  <title>Stray Clippings</title>
 
-    <style>
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                     Roboto, Helvetica, Arial, sans-serif;
-        line-height: 2;
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
+      line-height: 2;
 
-        min-height: 100vh;
-        margin: 0;
+      min-height: 100vh;
+      margin: 0;
 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-        text-align: center;
-      }
+      text-align: center;
+    }
 
-      h1 {
-        margin-bottom: 8px;
-      }
+    h1 {
+      margin-bottom: 8px;
+    }
 
-      /* Countdown */
-      .countdown {
-        margin-top: 12px;
-        font-family: "Courier New", monospace;
-        font-size: 18px;
-        letter-spacing: 2px;
-        white-space: nowrap;
-      }
+    /* Countdown */
+    .countdown {
+      margin-top: 12px;
+      font-family: "Courier New", monospace;
+      font-size: 18px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
 
-      /* ===== SEAMLESS MARQUEE ===== */
-      .scroll-container {
-        width: 100%;
-        overflow: hidden;
-        margin-top: 40px;
-      }
+    /* ===== TRUE CONTINUOUS MARQUEE ===== */
+    .marquee {
+      width: 100%;
+      overflow: hidden;
+      margin-top: 40px;
+      position: relative;
+    }
 
-      .scroll-track {
-        display: flex;
-        white-space: nowrap;
-        animation: marquee 6s linear infinite;
-      }
+    .marquee-track {
+      display: inline-flex;
+      white-space: nowrap;
+      will-change: transform;
+    }
 
-      .scroll-track span {
-        padding-right: 48px;
-      }
+    .marquee-track span {
+      padding-right: 48px;
+    }
+  </style>
+</head>
 
-      @keyframes marquee {
-        from {
-          transform: translateX(0);
-        }
-        to {
-          transform: translateX(-50%);
-        }
-      }
-    </style>
-  </head>
+<body>
+  <h1>Stray Clippings</h1>
 
-  <body>
-    <h1>Stray Clippings</h1>
+  <div class="countdown" id="countdown"></div>
 
-    <div class="countdown" id="countdown"></div>
-
-    <div class="scroll-container">
-      <div class="scroll-track">
-        <span>Clippings come to those who Stray</span>
-        <span>Clippings come to those who Stray</span>
-      </div>
+  <!-- WRITE THE LINE ONLY ONCE -->
+  <div class="marquee">
+    <div class="marquee-track" id="marquee">
+      <span>Clippings come to those who Stray</span>
     </div>
+  </div>
 
-    <script>
-      // Countdown target: midnight after 28 Feb (1 March 00:00)
-      const targetDate = new Date("2026-03-01T00:00:00").getTime();
+  <script>
+    /* ===== COUNTDOWN ===== */
+    const targetDate = new Date("2026-03-01T00:00:00").getTime();
 
-      function pad2(n) {
-        return String(n).padStart(2, "0").slice(-2);
+    function pad2(n) {
+      return String(n).padStart(2, "0").slice(-2);
+    }
+
+    function updateCountdown() {
+      const now = Date.now();
+      let diff = targetDate - now;
+      if (diff < 0) diff = 0;
+
+      const d = Math.floor(diff / 86400000) % 100;
+      diff %= 86400000;
+      const h = Math.floor(diff / 3600000);
+      diff %= 3600000;
+      const m = Math.floor(diff / 60000);
+      diff %= 60000;
+      const s = Math.floor(diff / 1000);
+      const ms = Math.floor((diff % 1000) / 10);
+
+      document.getElementById("countdown").textContent =
+        `${pad2(d)}:${pad2(h)}:${pad2(m)}:${pad2(s)}:${pad2(ms)}`;
+    }
+
+    setInterval(updateCountdown, 50);
+    updateCountdown();
+
+    /* ===== TRUE SINGLE-LINE SEAMLESS MARQUEE ===== */
+    const marquee = document.getElementById("marquee");
+    const original = marquee.children[0];
+    const clone = original.cloneNode(true);
+    marquee.appendChild(clone);
+
+    let x = 0;
+    const speed = 1.2; // pixels per frame
+
+    function animate() {
+      const width = original.offsetWidth;
+
+      x -= speed;
+
+      // when first copy fully exits, wrap perfectly
+      if (-x >= width) {
+        x += width;
       }
 
-      function updateCountdown() {
-        const now = Date.now();
-        let diff = targetDate - now;
-        if (diff < 0) diff = 0;
+      marquee.style.transform = `translateX(${x}px)`;
+      requestAnimationFrame(animate);
+    }
 
-        const days = Math.floor(diff / 86400000) % 100;
-        diff %= 86400000;
-
-        const hours = Math.floor(diff / 3600000);
-        diff %= 3600000;
-
-        const minutes = Math.floor(diff / 60000);
-        diff %= 60000;
-
-        const seconds = Math.floor(diff / 1000);
-        const ms = Math.floor((diff % 1000) / 10);
-
-        document.getElementById("countdown").textContent =
-          `${pad2(days)}:${pad2(hours)}:${pad2(minutes)}:${pad2(seconds)}:${pad2(ms)}`;
-      }
-
-      setInterval(updateCountdown, 50);
-      updateCountdown();
-    </script>
-  </body>
+    animate();
+  </script>
+</body>
 </html>
