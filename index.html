@@ -35,6 +35,7 @@
         font-family: "Courier New", monospace;
         font-size: 18px;
         letter-spacing: 2px;
+        white-space: nowrap;
       }
 
       /* Scrolling tagline */
@@ -47,7 +48,7 @@
       .scroll-text {
         display: inline-block;
         white-space: nowrap;
-        animation: scroll-left 25s linear infinite;
+        animation: scroll-left 15s linear infinite; /* faster */
       }
 
       @keyframes scroll-left {
@@ -75,13 +76,17 @@
       // Countdown target: midnight after 28 Feb (i.e. 1 March 00:00)
       const targetDate = new Date("2026-03-01T00:00:00").getTime();
 
+      function pad2(num) {
+        return String(num).padStart(2, "0").slice(-2);
+      }
+
       function updateCountdown() {
         const now = Date.now();
         let diff = targetDate - now;
 
         if (diff < 0) diff = 0;
 
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 100;
         diff %= 1000 * 60 * 60 * 24;
 
         const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -91,17 +96,17 @@
         diff %= 1000 * 60;
 
         const seconds = Math.floor(diff / 1000);
-        const milliseconds = diff % 1000;
+        const milliseconds = Math.floor(diff / 10); // two digits
 
         document.getElementById("countdown").textContent =
-          `${days}d ` +
-          `${String(hours).padStart(2, "0")}:` +
-          `${String(minutes).padStart(2, "0")}:` +
-          `${String(seconds).padStart(2, "0")}.` +
-          `${String(milliseconds).padStart(3, "0")}`;
+          `D ${pad2(days)}     ` +
+          `H ${pad2(hours)}     ` +
+          `M ${pad2(minutes)}     ` +
+          `S ${pad2(seconds)}     ` +
+          `MS ${pad2(milliseconds)}`;
       }
 
-      setInterval(updateCountdown, 10);
+      setInterval(updateCountdown, 50);
       updateCountdown();
     </script>
   </body>
