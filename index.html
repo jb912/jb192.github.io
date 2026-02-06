@@ -48,7 +48,7 @@
       .scroll-text {
         display: inline-block;
         white-space: nowrap;
-        animation: scroll-left 15s linear infinite; /* faster */
+        animation: scroll-left 8s linear infinite; /* much faster */
       }
 
       @keyframes scroll-left {
@@ -73,7 +73,7 @@
     </div>
 
     <script>
-      // Countdown target: midnight after 28 Feb (i.e. 1 March 00:00)
+      // Countdown target: midnight after 28 Feb (1 March 00:00)
       const targetDate = new Date("2026-03-01T00:00:00").getTime();
 
       function pad2(num) {
@@ -96,14 +96,14 @@
         diff %= 1000 * 60;
 
         const seconds = Math.floor(diff / 1000);
-        const milliseconds = Math.floor(diff / 10); // two digits
+        const milliseconds = Math.floor((diff % 1000) / 10);
 
         document.getElementById("countdown").textContent =
-          `D ${pad2(days)}     ` +
-          `H ${pad2(hours)}     ` +
-          `M ${pad2(minutes)}     ` +
-          `S ${pad2(seconds)}     ` +
-          `MS ${pad2(milliseconds)}`;
+          `${pad2(days)}:` +
+          `${pad2(hours)}:` +
+          `${pad2(minutes)}:` +
+          `${pad2(seconds)}:` +
+          `${pad2(milliseconds)}`;
       }
 
       setInterval(updateCountdown, 50);
