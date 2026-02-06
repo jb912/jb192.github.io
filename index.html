@@ -38,7 +38,7 @@
         white-space: nowrap;
       }
 
-      /* Seamless scrolling tagline */
+      /* TRUE seamless scrolling text */
       .scroll-container {
         width: 100%;
         overflow: hidden;
@@ -46,12 +46,13 @@
       }
 
       .scroll-track {
-        display: inline-flex;
-        white-space: nowrap;
+        display: flex;
+        width: max-content;
         animation: scroll-left 8s linear infinite;
       }
 
       .scroll-track span {
+        white-space: nowrap;
         padding-right: 48px;
       }
 
@@ -60,7 +61,7 @@
           transform: translateX(0);
         }
         to {
-          transform: translateX(-50%);
+          transform: translateX(-33.333%);
         }
       }
     </style>
@@ -68,12 +69,12 @@
 
   <body>
     <h1>Stray Clippings</h1>
-    
 
     <div class="countdown" id="countdown"></div>
 
     <div class="scroll-container">
       <div class="scroll-track">
+        <span>Clippings come to those who Stray</span>
         <span>Clippings come to those who Stray</span>
         <span>Clippings come to those who Stray</span>
       </div>
