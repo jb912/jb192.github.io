@@ -9,7 +9,6 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
                    Roboto, Helvetica, Arial, sans-serif;
       line-height: 2;
-
       min-height: 100vh;
       margin: 0;
 
@@ -17,7 +16,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
       text-align: center;
     }
 
@@ -25,7 +23,6 @@
       margin-bottom: 8px;
     }
 
-    /* Countdown */
     .countdown {
       margin-top: 12px;
       font-family: "Courier New", monospace;
@@ -34,49 +31,42 @@
       white-space: nowrap;
     }
 
-    /* ===== TRUE CONTINUOUS MARQUEE ===== */
+    /* Conveyor */
     .marquee {
       width: 100%;
       overflow: hidden;
       margin-top: 40px;
       position: relative;
+      height: 2.5em;
     }
 
-    .marquee-track {
-      display: inline-flex;
+    .item {
+      position: absolute;
       white-space: nowrap;
       will-change: transform;
-    }
-
-    .marquee-track span {
-      padding-right: 48px;
     }
   </style>
 </head>
 
 <body>
   <h1>Stray Clippings</h1>
-
   <div class="countdown" id="countdown"></div>
 
-  <!-- WRITE THE LINE ONLY ONCE -->
   <div class="marquee">
-    <div class="marquee-track" id="marquee">
-      <span>Clippings come to those who Stray</span>
-    </div>
+    <div class="item" id="item">Clippings come to those who Stray</div>
   </div>
 
   <script>
-    /* ===== COUNTDOWN ===== */
+    /* ===== Countdown ===== */
     const targetDate = new Date("2026-03-01T00:00:00").getTime();
+    const cd = document.getElementById("countdown");
 
     function pad2(n) {
       return String(n).padStart(2, "0").slice(-2);
     }
 
     function updateCountdown() {
-      const now = Date.now();
-      let diff = targetDate - now;
+      let diff = targetDate - Date.now();
       if (diff < 0) diff = 0;
 
       const d = Math.floor(diff / 86400000) % 100;
@@ -88,33 +78,35 @@
       const s = Math.floor(diff / 1000);
       const ms = Math.floor((diff % 1000) / 10);
 
-      document.getElementById("countdown").textContent =
-        `${pad2(d)}:${pad2(h)}:${pad2(m)}:${pad2(s)}:${pad2(ms)}`;
+      cd.textContent = `${pad2(d)}:${pad2(h)}:${pad2(m)}:${pad2(s)}:${pad2(ms)}`;
     }
 
     setInterval(updateCountdown, 50);
     updateCountdown();
 
-    /* ===== TRUE SINGLE-LINE SEAMLESS MARQUEE ===== */
-    const marquee = document.getElementById("marquee");
-    const original = marquee.children[0];
-    const clone = original.cloneNode(true);
-    marquee.appendChild(clone);
+    /* ===== TRUE NON-OVERLAPPING CONVEYOR ===== */
+    const item = document.getElementById("item");
+    const marquee = document.querySelector(".marquee");
 
-    let x = 0;
-    const speed = 1.2; // pixels per frame
+    let x;
+    let speed = 1.2;
+
+    function resetPosition() {
+      x = marquee.offsetWidth;
+    }
+
+    resetPosition();
 
     function animate() {
-      const width = original.offsetWidth;
-
       x -= speed;
+      const width = item.offsetWidth;
 
-      // when first copy fully exits, wrap perfectly
-      if (-x >= width) {
-        x += width;
+      // Only reset AFTER it has fully exited left
+      if (x < -width) {
+        resetPosition();
       }
 
-      marquee.style.transform = `translateX(${x}px)`;
+      item.style.transform = `translateX(${x}px)`;
       requestAnimationFrame(animate);
     }
 
