@@ -1,116 +1,278 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Stray Clippings</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stray Clippings — writing by Jack Beevers</title>
+<meta name="description" content="A small archive of stray writing — verse, satire, and tall tales — by Jack Beevers.">
 
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-                   Roboto, Helvetica, Arial, sans-serif;
-      line-height: 2;
-      min-height: 100vh;
-      margin: 0;
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
+<style>
+  :root{
+    --paper: #F7F3EA;
+    --paper-card: #FCFAF4;
+    --ink: #221F1A;
+    --ink-soft: #4A453D;
+    --muted: #837A6C;
+    --rule: #DCD4C2;
+    --accent: #2F4436;
+    --accent-soft: #E4E7DE;
+    --stamp: #8C3A2A;
+  }
 
-    h1 {
-      margin-bottom: 8px;
-    }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
 
-    .countdown {
-      margin-top: 12px;
-      font-family: "Courier New", monospace;
-      font-size: 18px;
-      letter-spacing: 2px;
-      white-space: nowrap;
-    }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Newsreader', serif;
+    font-size:18px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
 
-    /* Conveyor */
-    .marquee {
-      width: 100%;
-      overflow: hidden;
-      margin-top: 40px;
-      position: relative;
-      height: 2.5em;
-    }
+  a{ color:var(--accent); text-decoration-thickness:1px; text-underline-offset:3px; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
 
-    .item {
-      position: absolute;
-      white-space: nowrap;
-      will-change: transform;
-    }
-  </style>
+  .wrap{ max-width:640px; margin:0 auto; padding:0 24px; }
+
+  .mini-nav{
+    position:fixed; top:0; left:0; right:0;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    background:rgba(247,243,234,0.88);
+    backdrop-filter:saturate(150%) blur(6px);
+    border-bottom:1px solid var(--rule);
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    z-index:50;
+    transform:translateY(-100%);
+    transition:transform .35s ease;
+  }
+  .mini-nav.show{ transform:translateY(0); }
+  .mini-nav a{ color:var(--ink); text-decoration:none; }
+  .mini-nav .mn-title{ font-weight:700; }
+  .mini-nav .mn-top{ color:var(--muted); }
+
+  .hero{
+    padding:min(18vh,140px) 24px 64px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 18px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(2.6rem, 9vw, 4.6rem);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+  }
+  .hero p.sub{
+    font-family:'Newsreader', serif;
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:clamp(1.05rem,3vw,1.25rem);
+    max-width:34ch;
+    margin:0 auto;
+  }
+  .hero .byline{
+    margin-top:28px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    color:var(--muted);
+  }
+  .scroll-cue{
+    display:block;
+    margin:56px auto 0;
+    width:1px; height:44px;
+    background:linear-gradient(var(--muted), transparent);
+    position:relative;
+  }
+
+  .index{
+    padding:8px 24px 56px;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+  }
+  .index ol{
+    list-style:none; margin:0; padding:32px 0 0;
+    max-width:640px; margin:0 auto;
+  }
+  .index li{
+    border-bottom:1px dotted var(--rule);
+  }
+  .index li:first-child{ border-top:1px dotted var(--rule); }
+  .index a{
+    display:flex; align-items:baseline; gap:16px;
+    padding:16px 4px;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .index a:hover .idx-title{ color:var(--accent); }
+  .idx-num{
+    font-family:'Space Mono', monospace;
+    font-size:12px; color:var(--muted);
+    min-width:22px;
+  }
+  .idx-title{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.15rem;
+    flex:1;
+    transition:color .2s ease;
+  }
+  .idx-meta{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+
+  .clipping{
+    position:relative;
+    padding:88px 24px 24px;
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .clipping.in{ opacity:1; transform:translateY(0); }
+  .clipping-inner{ max-width:640px; margin:0 auto; position:relative; }
+
+  .stamp{
+    position:absolute;
+    top:-6px; left:0;
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--stamp);
+    border:1px solid var(--stamp);
+    padding:4px 9px;
+    transform:rotate(-2deg);
+    border-radius:2px;
+  }
+
+  .clip-date{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+    letter-spacing:0.04em;
+    margin:36px 0 10px;
+  }
+
+  h2.clip-title{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:clamp(1.9rem, 6vw, 2.6rem);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    margin:0 0 22px;
+  }
+
+  .tear{
+    border:none;
+    border-top:1px dashed var(--rule);
+    margin:0 0 30px;
+  }
+
+  .clip-body p{
+    margin:0 0 1.35em;
+    color:var(--ink);
+  }
+  .clip-body p:last-child{ margin-bottom:0; }
+
+  .verse{
+    font-style:normal;
+  }
+  .verse p{
+    margin:0 0 1.5em;
+  }
+
+  .clip-foot{
+    margin-top:36px;
+    padding-top:16px;
+    border-top:1px solid var(--rule);
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+  }
+  .clip-foot a{ color:var(--muted); }
+
+  footer{
+    padding:80px 24px 60px;
+    text-align:center;
+    border-top:1px solid var(--rule);
+  }
+  footer .f-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.4rem;
+    margin:0 0 12px;
+  }
+  footer p{
+    color:var(--ink-soft);
+    max-width:38ch;
+    margin:0 auto 22px;
+  }
+  footer a.mail{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid var(--accent);
+    padding-bottom:2px;
+  }
+  footer .copy{
+    margin-top:48px;
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    color:var(--muted);
+    letter-spacing:0.05em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .clipping, .mini-nav{ transition:none; opacity:1; transform:none; }
+  }
+
+  @media (max-width:480px){
+    body{ font-size:17px; }
+    .clipping{ padding:72px 20px 8px; }
+    .index li a{ padding:14px 2px; }
+  }
+</style>
 </head>
-
 <body>
-  <h1>Stray Clippings</h1>
-  <div class="countdown" id="countdown"></div>
 
-  <div class="marquee">
-    <div class="item" id="item">Clippings come to those who Stray</div>
-  </div>
+<nav class="mini-nav" id="miniNav">
+  <a href="#top" class="mn-title">Stray Clippings</a>
+  <span style="display:flex; gap:16px;">
+    <a href="mini-clippings.html" class="mn-top">Mini Clippings</a>
+    <a href="#index" class="mn-top">Index ↑</a>
+  </span>
+</nav>
 
-  <script>
-    /* ===== Countdown ===== */
-    const targetDate = new Date("2026-03-01T00:00:00").getTime();
-    const cd = document.getElementById("countdown");
-
-    function pad2(n) {
-      return String(n).padStart(2, "0").slice(-2);
-    }
-
-    function updateCountdown() {
-      let diff = targetDate - Date.now();
-      if (diff < 0) diff = 0;
-
-      const d = Math.floor(diff / 86400000) % 100;
-      diff %= 86400000;
-      const h = Math.floor(diff / 3600000);
-      diff %= 3600000;
-      const m = Math.floor(diff / 60000);
-      diff %= 60000;
-      const s = Math.floor(diff / 1000);
-      const ms = Math.floor((diff % 1000) / 10);
-
-      cd.textContent = `${pad2(d)}:${pad2(h)}:${pad2(m)}:${pad2(s)}:${pad2(ms)}`;
-    }
-
-    setInterval(updateCountdown, 50);
-    updateCountdown();
-
-    /* ===== TRUE NON-OVERLAPPING CONVEYOR ===== */
-    const item = document.getElementById("item");
-    const marquee = document.querySelector(".marquee");
-
-    let x;
-    let speed = 3;
-
-    function resetPosition() {
-      x = marquee.offsetWidth;
-    }
-
-    resetPosition();
-
-    function animate() {
-      x -= speed;
-      const width = item.offsetWidth;
-
-      // Only reset AFTER it has fully exited left
-      if (x < -width) {
-        resetPosition();
-      }
-
-      item.style.transform = `translateX(${x}px)`;
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
-</body>
-</html>
+<header class="hero" id="top">
+  <p class="eyebrow">An archive of stray writing</p>
+  <h1 class="title">Stray<br>Clippings</h1>
+  <p class="sub">Verse, satire, and the occasional tall tale, kept somewhere I won't lose them.</p>
+  <p class="byline">JACK BEEVERS · NORTH LONDON</p>
+  <p style="margin-top:14px;"><a href="mini-clippings.html" style="font-family:'Space Mono',
