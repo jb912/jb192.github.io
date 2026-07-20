@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mini Clippings — tweets by Jack Beevers</title>
+<meta name="description" content="Thirty of the best-liked and most-retweeted tweets, kept for posterity.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper: #F7F3EA;
+    --paper-card: #FCFAF4;
+    --ink: #221F1A;
+    --ink-soft: #4A453D;
+    --muted: #837A6C;
+    --rule: #DCD4C2;
+    --accent: #2F4436;
+    --stamp: #8C3A2A;
+  }
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Newsreader', serif;
+    font-size:18px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:var(--accent); text-decoration-thickness:1px; text-underline-offset:3px; }
+  a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+  .wrap{ max-width:640px; margin:0 auto; padding:0 24px; }
+
+  .mini-nav{
+    position:fixed; top:0; left:0; right:0;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    background:rgba(247,243,234,0.9);
+    backdrop-filter:saturate(150%) blur(6px);
+    border-bottom:1px solid var(--rule);
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    z-index:50;
+  }
+  .mini-nav a{ color:var(--ink); text-decoration:none; }
+  .mini-nav .mn-title{ font-weight:700; }
+  .mini-nav .mn-back{ color:var(--muted); }
+
+  header.hero{
+    padding:min(16vh,120px) 24px 48px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:0 0 18px;
+  }
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(2.3rem, 8vw, 3.8rem);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+  }
+  header.hero p.sub{
+    font-family:'Newsreader', serif;
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:clamp(1rem,3vw,1.2rem);
+    max-width:38ch;
+    margin:0 auto;
+  }
+  header.hero .byline{
+    margin-top:24px;
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    color:var(--muted);
+  }
+
+  .clip-list{
+    padding:8px 24px 100px;
+    border-top:1px solid var(--rule);
+  }
+  ul.clips{
+    list-style:none; margin:0; padding:0;
+    max-width:640px; margin:0 auto;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:0;
+  }
+  li.clip{
+    padding:30px 4px;
+    border-bottom:1px dotted var(--rule);
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  li.clip.in{ opacity:1; transform:translateY(0); }
+  li.clip:first-child{ border-top:1px dotted var(--rule); }
+
+  .clip-text{
+    font-size:1.15rem;
+    line-height:1.55;
+    color:var(--ink);
+    margin:0 0 14px;
+    white-space:pre-line;
+  }
+  .clip-text::before{
+    content:"“";
+    font-family:'Fraunces', serif;
+    color:var(--stamp);
+    font-size:1.4em;
+    margin-right:2px;
+    vertical-align:-0.05em;
+  }
+
+  .clip-meta{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    font-family:'Space Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    letter-spacing:0.02em;
+  }
+  .clip-meta .heart{ color:var(--stamp); }
+  .clip-meta .dot{ color:var(--rule); }
+
+  footer{
+    padding:64px 24px 60px;
+    text-align:center;
+    border-top:1px solid var(--rule);
+  }
+  footer p{
+    color:var(--ink-soft);
+    max-width:38ch;
+    margin:0 auto 20px;
+  }
+  footer a.back{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid var(--accent);
+    padding-bottom:2px;
+  }
+  footer .copy{
+    margin-top:40px;
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    color:var(--muted);
+    letter-spacing:0.05em;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    li.clip{ transition:none; opacity:1; transform:none; }
+  }
+  @media (max-width:480px){
+    body{ font-size:17px; }
+    li.clip{ padding:24px 2px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="mini-nav">
+  <a href="index.html" class="mn-title">Stray Clippings</a>
+  <a href="index.html" class="mn-back">← Back to writing</a>
+</nav>
+
+<header class="hero">
+  <p class="eyebrow">Thirty from the timeline</p>
+  <h1 class="title">Mini<br>Clippings</h1>
+  <p class="sub">The best-liked and most-retweeted lines from over a decade on Twitter, kept before they scroll away for good.</p>
+  <p class="byline">@2WOSCOOPS · SORTED BY LIKES &amp; RETWEETS</p>
+</header>
+
+<section class="clip-list">
+  <ul class="clips">
+
+    <li class="clip"><p class="clip-text">What are Baby on Board car stickers all about? I was gonna purposely crash into the back of you but will leave it now I know about the baby.</p>
+      <p class="clip-meta"><span class="heart">♥ 6</span><span class="dot">·</span><span>3 RTs</span><span class="dot">·</span><span>18 May 2016</span></p></li>
+
+    <li class="clip"><p class="clip-text">Me: puts desired items on counter at shop
+
+My brain:
+Don't say it
+Don't say it
+Don't say it
+
+Me: just these please</p>
+      <p class="clip-meta"><span class="heart">♥ 8</span><span class="dot">·</span><span>9 Sep 2019</span></p></li>
+
+    <li class="clip"><p class="clip-text">May your Sundays be fundays and your brunches be bottomless</p>
+      <p class="clip-meta"><span class="heart">♥ 7</span><span class="dot">·</span><span>16 Apr 2017</span></p></li>
+
+    <li class="clip"><p class="clip-text">Costa Del *insert sunny location* is now so widely used that some people don't know what it actually means. Just waiting for someone to go to Spain and say Costa Del Costa Del Sol on their insta story.</p>
+      <p class="clip-meta"><span class="heart">♥ 6</span><span class="dot">·</span><span>1 RT</span><span class="dot">·</span><span>12 Jul 2020</span></p></li>
+
+    <li class="clip"><p class="clip-text">Mondays are fine, its your life thats shit.</p>
+      <p class="clip-meta"><span class="heart">♥ 2</span><span class="dot">·</span><span>4 RTs</span><span class="dot">·</span><span>29 Jul 2013</span></p></li>
+
+    <li class="clip"><p class="clip-text">Neeee you have to vote neeee I'm so amazing because I voted neeeee we fought for our right to vote neeeeee</p>
+      <p class="clip-meta"><span class="heart">♥ 4</span><span class="dot">·</span><span>2 RTs</span><span class="dot">·</span><span>8 May 2015</span></p></li>
+
+    <li class="clip"><p class="clip-text">. Keep it locked
+
+Rinse FM 🤝 Professor Chris
+Presenter Whitty</p>
+      <p class="clip-meta"><span class="heart">♥ 6</span><span class="dot">·</span><span>10 Jan 2021</span></p></li>
+
+    <li class="clip"><p class="clip-text">Taxi driver said @JossxB talks like a geek. He's of one the bods now.</p>
+      <p class="clip-meta"><span class="heart">♥ 6</span><span class="dot">·</span><span>30 Apr 2016</span></p></li>
+
+    <li class="clip"><p class="clip-text">I'm Chanel 5 you're channel 5</p>
+      <p class="clip-meta"><span class="heart">♥ 6</span><span class="dot">·</span><span>9 Nov 2018</span></p></li>
+
+    <li
