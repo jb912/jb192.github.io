@@ -36,11 +36,11 @@
   a:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
   .wrap{ max-width:640px; margin:0 auto; padding:0 24px; }
 
-  .mini-nav{
+  .site-nav{
     position:fixed; top:0; left:0; right:0;
     display:flex; align-items:center; justify-content:space-between;
-    padding:14px 24px;
-    background:rgba(247,243,234,0.9);
+    padding:16px 24px;
+    background:rgba(247,243,234,0.92);
     backdrop-filter:saturate(150%) blur(6px);
     border-bottom:1px solid var(--rule);
     font-family:'Space Mono', monospace;
@@ -49,9 +49,30 @@
     text-transform:uppercase;
     z-index:50;
   }
-  .mini-nav a{ color:var(--ink); text-decoration:none; }
-  .mini-nav .mn-title{ font-weight:700; }
-  .mini-nav .mn-back{ color:var(--muted); }
+  .site-nav .nav-title{
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:700;
+  }
+  .site-nav .nav-links{
+    display:flex;
+    gap:22px;
+  }
+  .site-nav .nav-links a{
+    color:var(--muted);
+    text-decoration:none;
+    padding-bottom:3px;
+    border-bottom:1px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .site-nav .nav-links a:hover{
+    color:var(--ink);
+  }
+  .site-nav .nav-links a.active{
+    color:var(--ink);
+    border-bottom-color:var(--stamp);
+  }
+  body{ padding-top:52px; }
 
   header.hero{
     padding:min(16vh,120px) 24px 48px;
@@ -114,7 +135,7 @@
     font-size:1.15rem;
     line-height:1.55;
     color:var(--ink);
-    margin:0 0 14px;
+    margin:0;
     white-space:pre-line;
   }
   .clip-text::before{
@@ -125,18 +146,6 @@
     margin-right:2px;
     vertical-align:-0.05em;
   }
-
-  .clip-meta{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    font-family:'Space Mono', monospace;
-    font-size:11px;
-    color:var(--muted);
-    letter-spacing:0.02em;
-  }
-  .clip-meta .heart{ color:var(--stamp); }
-  .clip-meta .dot{ color:var(--rule); }
 
   footer{
     padding:64px 24px 60px;
@@ -176,23 +185,22 @@
 </head>
 <body>
 
-<nav class="mini-nav">
-  <a href="index.html" class="mn-title">Stray Clippings</a>
-  <a href="index.html" class="mn-back">← Back to writing</a>
+<nav class="site-nav">
+  <a href="index.html" class="nav-title">Stray Clippings</a>
+  <span class="nav-links">
+    <a href="index.html">Writing</a>
+    <a href="mini-clippings.html" class="active">Mini Clippings</a>
+  </span>
 </nav>
 
 <header class="hero">
-  <p class="eyebrow">Thirty from the timeline</p>
   <h1 class="title">Mini<br>Clippings</h1>
-  <p class="sub">The best-liked and most-retweeted lines from over a decade on Twitter, kept before they scroll away for good.</p>
-  <p class="byline">@2WOSCOOPS · SORTED BY LIKES &amp; RETWEETS</p>
 </header>
 
 <section class="clip-list">
   <ul class="clips">
 
-    <li class="clip"><p class="clip-text">What are Baby on Board car stickers all about? I was gonna purposely crash into the back of you but will leave it now I know about the baby.</p>
-      <p class="clip-meta"><span class="heart">♥ 6</span><span class="dot">·</span><span>3 RTs</span><span class="dot">·</span><span>18 May 2016</span></p></li>
+    <li class="clip"><p class="clip-text">What are Baby on Board car stickers all about? I was gonna purposely crash into the back of you but will leave it now I know about the baby.</p></li>
 
     <li class="clip"><p class="clip-text">Me: puts desired items on counter at shop
 
@@ -201,31 +209,94 @@ Don't say it
 Don't say it
 Don't say it
 
-Me: just these please</p>
-      <p class="clip-meta"><span class="heart">♥ 8</span><span class="dot">·</span><span>9 Sep 2019</span></p></li>
+Me: just these please</p></li>
 
-    <li class="clip"><p class="clip-text">May your Sundays be fundays and your brunches be bottomless</p>
-      <p class="clip-meta"><span class="heart">♥ 7</span><span class="dot">·</span><span>16 Apr 2017</span></p></li>
+    <li class="clip"><p class="clip-text">May your Sundays be fundays and your brunches be bottomless</p></li>
 
-    <li class="clip"><p class="clip-text">Costa Del *insert sunny location* is now so widely used that some people don't know what it actually means. Just waiting for someone to go to Spain and say Costa Del Costa Del Sol on their insta story.</p>
-      <p class="clip-meta"><span class="heart">♥ 6</span><span class="dot">·</span><span>1 RT</span><span class="dot">·</span><span>12 Jul 2020</span></p></li>
+    <li class="clip"><p class="clip-text">Costa Del *insert sunny location* is now so widely used that some people don't know what it actually means. Just waiting for someone to go to Spain and say Costa Del Costa Del Sol on their insta story.</p></li>
 
-    <li class="clip"><p class="clip-text">Mondays are fine, its your life thats shit.</p>
-      <p class="clip-meta"><span class="heart">♥ 2</span><span class="dot">·</span><span>4 RTs</span><span class="dot">·</span><span>29 Jul 2013</span></p></li>
+    <li class="clip"><p class="clip-text">Mondays are fine, its your life thats shit.</p></li>
 
-    <li class="clip"><p class="clip-text">Neeee you have to vote neeee I'm so amazing because I voted neeeee we fought for our right to vote neeeeee</p>
-      <p class="clip-meta"><span class="heart">♥ 4</span><span class="dot">·</span><span>2 RTs</span><span class="dot">·</span><span>8 May 2015</span></p></li>
+    <li class="clip"><p class="clip-text">Neeee you have to vote neeee I'm so amazing because I voted neeeee we fought for our right to vote neeeeee</p></li>
 
     <li class="clip"><p class="clip-text">. Keep it locked
 
 Rinse FM 🤝 Professor Chris
-Presenter Whitty</p>
-      <p class="clip-meta"><span class="heart">♥ 6</span><span class="dot">·</span><span>10 Jan 2021</span></p></li>
+Presenter Whitty</p></li>
 
-    <li class="clip"><p class="clip-text">Taxi driver said @JossxB talks like a geek. He's of one the bods now.</p>
-      <p class="clip-meta"><span class="heart">♥ 6</span><span class="dot">·</span><span>30 Apr 2016</span></p></li>
+    <li class="clip"><p class="clip-text">Taxi driver said @JossxB talks like a geek. He's of one the bods now.</p></li>
 
-    <li class="clip"><p class="clip-text">I'm Chanel 5 you're channel 5</p>
-      <p class="clip-meta"><span class="heart">♥ 6</span><span class="dot">·</span><span>9 Nov 2018</span></p></li>
+    <li class="clip"><p class="clip-text">I'm Chanel 5 you're channel 5</p></li>
 
-    <li
+    <li class="clip"><p class="clip-text">If my brother or sister send me another photo from south east asia with another one of my best friends i am going to lose the plot. Warned.</p></li>
+
+    <li class="clip"><p class="clip-text">Hair destroyed. Butchered. Worst ever. Look like a lesbian. Need some head wear. Sharpish. Maybe a stone island beanie. Proper clobber.</p></li>
+
+    <li class="clip"><p class="clip-text">Was getting too many matches on Tinder. Data being drained. Changed pic to this. Still getting worldies. Annoying.</p></li>
+
+    <li class="clip"><p class="clip-text">Does it annoy anyone when people say 'myself' incorrectly to sound clever instead of 'me' or 'I', or is it just myself</p></li>
+
+    <li class="clip"><p class="clip-text">Salt and vinegar 🙂
+Sea salt and cider vinegar 😃
+Anglesey sea salt and Irish cider vinegar 🤩
+Refined Anglesey deep sea salt and 21 day aged Irish pink lady cider vinegar 🤯</p></li>
+
+    <li class="clip"><p class="clip-text">Just seen a woman buy 5 kit kats from the trolley on the train. At about £1.20 a go. Said they'll do her for the week. Frivolous. Whimsical.</p></li>
+
+    <li class="clip"><p class="clip-text">Why do people think you need an apostrophe before the s for plurals of letters/acronyms e.g. GCSE's. Cos you don't. Idiot's.</p></li>
+
+    <li class="clip"><p class="clip-text">Easter egg chocolate vs normal chocolate. Heated debate. Brother says there's no difference. I think there is. It's nicer. sweeter. Love it.</p></li>
+
+    <li class="clip"><p class="clip-text">I've got a week off you've got a wee cough however I'm self isolating for 7 days and you're showing symptoms of corona virus and I'm Scottish</p></li>
+
+    <li class="clip"><p class="clip-text">From now on I'm referring to Thursday as Friday Friday</p></li>
+
+    <li class="clip"><p class="clip-text">You're all talk I'm all torque</p></li>
+
+    <li class="clip"><p class="clip-text">There's more to life than Brexit. Said no one ever.</p></li>
+
+    <li class="clip"><p class="clip-text">Nothing is more exhilarating than holding ctrl and copying multiple cells in excel. Gets more and more risky. High stakes. Could lose it all</p></li>
+
+    <li class="clip"><p class="clip-text">A hasny been to America but a been in some states x</p></li>
+
+    <li class="clip"><p class="clip-text">John Smedley socks. Merino wool. Charcoal with aubergine stripes. Nectar for the feet. JB</p></li>
+
+    <li class="clip"><p class="clip-text">Evening fellas. Weekend over. Bits done. Sunday night feeling. Long week ahead. Shoes polished. Shirt ironed. Blue. Well presented. Reem. JB</p></li>
+
+    <li class="clip"><p class="clip-text">Location: shit creek
+Orientation: up
+
+**MISSING** 1 x paddle</p></li>
+
+    <li class="clip"><p class="clip-text">New mattress and new sheets. I have everything. All that's missing is someone to share it with. 😭</p></li>
+
+    <li class="clip"><p class="clip-text">Pisses me right off when people say 'would have'. It's would of. OF. Idiots.</p></li>
+
+    <li class="clip"><p class="clip-text">If cows are so bad for the environment then surely we should eat more of them to get rid of them quicker? 🤔</p></li>
+
+    <li class="clip"><p class="clip-text">"No junk mail" signs are not effective cos the mail isn't junk to the person posting it, in fact it's a key part of their business model and potentially their livelihood</p></li>
+
+  </ul>
+</section>
+
+<footer>
+  <p>There are 3,000-odd more where these came from.</p>
+  <a class="back" href="index.html">← Back to Stray Clippings</a>
+  <p class="copy">© 2026 JACK BEEVERS — STRAY CLIPPINGS</p>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('li.clip');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+  items.forEach(c=>io.observe(c));
+</script>
+
+</body>
+</html>
