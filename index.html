@@ -41,11 +41,11 @@
 
   .wrap{ max-width:640px; margin:0 auto; padding:0 24px; }
 
-  .mini-nav{
+  .site-nav{
     position:fixed; top:0; left:0; right:0;
     display:flex; align-items:center; justify-content:space-between;
-    padding:14px 24px;
-    background:rgba(247,243,234,0.88);
+    padding:16px 24px;
+    background:rgba(247,243,234,0.92);
     backdrop-filter:saturate(150%) blur(6px);
     border-bottom:1px solid var(--rule);
     font-family:'Space Mono', monospace;
@@ -53,13 +53,31 @@
     letter-spacing:0.06em;
     text-transform:uppercase;
     z-index:50;
-    transform:translateY(-100%);
-    transition:transform .35s ease;
   }
-  .mini-nav.show{ transform:translateY(0); }
-  .mini-nav a{ color:var(--ink); text-decoration:none; }
-  .mini-nav .mn-title{ font-weight:700; }
-  .mini-nav .mn-top{ color:var(--muted); }
+  .site-nav .nav-title{
+    color:var(--ink);
+    text-decoration:none;
+    font-weight:700;
+  }
+  .site-nav .nav-links{
+    display:flex;
+    gap:22px;
+  }
+  .site-nav .nav-links a{
+    color:var(--muted);
+    text-decoration:none;
+    padding-bottom:3px;
+    border-bottom:1px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .site-nav .nav-links a:hover{
+    color:var(--ink);
+  }
+  .site-nav .nav-links a.active{
+    color:var(--ink);
+    border-bottom-color:var(--stamp);
+  }
+  body{ padding-top:52px; }
 
   .hero{
     padding:min(18vh,140px) 24px 64px;
@@ -250,7 +268,7 @@
 
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior:auto; }
-    .clipping, .mini-nav{ transition:none; opacity:1; transform:none; }
+    .clipping{ transition:none; opacity:1; transform:none; }
   }
 
   @media (max-width:480px){
@@ -262,11 +280,11 @@
 </head>
 <body>
 
-<nav class="mini-nav" id="miniNav">
-  <a href="#top" class="mn-title">Stray Clippings</a>
-  <span style="display:flex; gap:16px;">
-    <a href="mini-clippings.html" class="mn-top">Mini Clippings</a>
-    <a href="#index" class="mn-top">Index ↑</a>
+<nav class="site-nav">
+  <a href="index.html" class="nav-title">Stray Clippings</a>
+  <span class="nav-links">
+    <a href="index.html" class="active">Writing</a>
+    <a href="mini-clippings.html">Mini Clippings</a>
   </span>
 </nav>
 
@@ -275,4 +293,216 @@
   <h1 class="title">Stray<br>Clippings</h1>
   <p class="sub">Verse, satire, and the occasional tall tale, kept somewhere I won't lose them.</p>
   <p class="byline">JACK BEEVERS · NORTH LONDON</p>
-  <p style="margin-top:14px;"><a href="mini-clippings.html" style="font-family:'Space Mono',
+  <span class="scroll-cue" aria-hidden="true"></span>
+</header>
+
+<section class="index" id="index">
+  <div class="wrap">
+    <ol>
+      <li>
+        <a href="#jai-krishna">
+          <span class="idx-num">01</span>
+          <span class="idx-title">Jai Krishna</span>
+          <span class="idx-meta">May 2022</span>
+        </a>
+      </li>
+      <li>
+        <a href="#christmas-dinner">
+          <span class="idx-num">02</span>
+          <span class="idx-title">Christmas Dinner</span>
+          <span class="idx-meta">Dec 2021</span>
+        </a>
+      </li>
+      <li>
+        <a href="#christmas-message">
+          <span class="idx-num">03</span>
+          <span class="idx-title">The Christmas Message</span>
+          <span class="idx-meta">Dec 2021</span>
+        </a>
+      </li>
+      <li>
+        <a href="#western-chapter-one">
+          <span class="idx-num">04</span>
+          <span class="idx-title">Western: Chapter One</span>
+          <span class="idx-meta">Sep 2021</span>
+        </a>
+      </li>
+      <li>
+        <a href="#furthest-from-home">
+          <span class="idx-num">05</span>
+          <span class="idx-title">The Furthest From Home I Have Ever Been</span>
+          <span class="idx-meta">May 2021</span>
+        </a>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<main>
+
+  <article class="clipping" id="jai-krishna">
+    <div class="clipping-inner">
+      <span class="stamp">Clipping No. 01</span>
+      <p class="clip-date">4 May 2022 · verse</p>
+      <h2 class="clip-title">Jai Krishna</h2>
+      <hr class="tear">
+      <div class="clip-body verse">
+        <p>The evening got off to an unfavourable start<br>
+        With James not taking an early dart<br>
+        Stuck in a call, with dismay he claimed<br>
+        Selling whisky for oligarchs who can't be named</p>
+
+        <p>Ellie was able to meet at the pub<br>
+        Unlike Josslyn, marooned in her south London hub<br>
+        A Guinness and a Neck Oil, at the bar I requested<br>
+        Waiting for it to settle, my patience was tested</p>
+
+        <p>But that first sip was stunning, like the first day of spring,<br>
+        Or someone having a charger, when your own, you forgot to bring<br>
+        The second and third followed, as we chatted with glee<br>
+        About Ellie's recent escapades, in Milan, Italy</p>
+
+        <p>Yet soon it was time, to drink up and leave<br>
+        For our booking was at 8, would you believe<br>
+        At that world renowned Indian, on Stroud Green Road<br>
+        Jai Krishna, where there's curry by the lorry load</p>
+
+        <p>We arrived and there was nowhere for us to be seated<br>
+        Jai Krishna's a piss take! I almost tweeted<br>
+        But before long we were taken to our table<br>
+        And placed down our wine, with the colourful label</p>
+
+        <p>As we scanned the menu, I took a moment of pause<br>
+        From the other side of the room, there erupted some roars<br>
+        A birthday party perhaps, or a hen or stag do<br>
+        I thought as Zac cried, let's get the sag aloo</p>
+
+        <p>Five poppadums we ordered, one for each man<br>
+        And chutneys and pickles, of which I'm a fan<br>
+        We ordered dishes a plenty, every kind you could think of<br>
+        When they arrived, the tables edge, they were on the brink of</p>
+
+        <p>There was rice, and aubergine and broccoli and spinach<br>
+        A spread that scratched every single culinary itch<br>
+        There was potato and dhal, fragrant and creamy<br>
+        Mopped up with chapatti, oh how it was dreamy</p>
+
+        <p>Before long we were so full, we could barely move<br>
+        The last potato, James requested, and we were glad to approve<br>
+        Zac had work the next day, so he had to dash<br>
+        Remembering they don't take card, I nipped out to get cash</p>
+
+        <p>The bill was paid, a mere £16 per head<br>
+        This is insanely good value, one of us said<br>
+        As it was a wonderfully chaotic, Indian scene<br>
+        And I recommend going, if you still have not been</p>
+      </div>
+      <div class="clip-foot">
+        <span>2 min read</span>
+        <a href="#index">Back to index</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="clipping" id="christmas-dinner">
+    <div class="clipping-inner">
+      <span class="stamp">Clipping No. 02</span>
+      <p class="clip-date">25 December 2021 · menu, satire</p>
+      <h2 class="clip-title">Christmas Dinner</h2>
+      <hr class="tear">
+      <div class="clip-body">
+        <p>Scottish leaping salmon, line caught by the Gray's uncle from fresh Aberdeenshire spring water, smoked for 21 days over ancient oak in a sacred smokery on the flanks of Ben Nevis, served on a buckwheat blini, expertly baked by Dunne's of Crouch End, a generous dollop of sour cream, a pinch of Anglesey deep sea rock salt and beautifully pungent Ethiopian pepper, cracked by furloughed hospitality workers, and a delicate squeeze of waxed, Sicilian lemon.</p>
+
+        <p>Hand reared turkey, given extremely free range of the Norfolk Broads and the freedom of the city of Norwich, fed with a corn themed seven course taster menu, expertly curated by Marcus Waring, basted with a foraged wild garlic and rosemary butter, stuffed to the brim with Cumberland pork sausage meat seasoned delightfully and roasted until the juices run perfectly transparent. Pigs in 14 tog blankets made from miniature East Gloucestershire pork chipolatas, lovingly wrapped in extra streaky back bacon strips. Maris Piper potatoes smothered in goose fat and roasted until wonderfully crispy on the outside yet as fluffy as clouds on the inside. Magenta red cabbage, concerningly aggressively chopped into extra thin strips and steamed with cloudy Herefordshire farmhouse cider, to taste. Perfectly spherical, net zero Brussel Sprouts served with lardons of Tuscan pancetta but still tasting ducking disgusting. Greek archipelago honey roasted carrots and parsnips grown deep underground in fantastically fertile soil. All of which drowned in stunningly flavoursome gravy served from a seaworthy, brushed Sheffield steel boat.</p>
+
+        <p>Christmas pudding made by grandma on stir Sunday following a top-secret recipe that has been in the family generations since it was traded for two cows at market, and was once temporarily stolen by a rival family. The tale goes that as an ancient family ancestor had just meticulously followed the infamous recipe one stir Sunday back in the dark ages, she was trekking back to her hut when she was ambushed by a band of unsavories. They captured her, locked her in the basement and marvelled at the wonderful secrets held on that enchanted parchment. They followed the method down to a tee whilst belting out a chorus of Good King Wenceslas, but never reached the last step, for the ancestor showed outstanding bravery and was able to free herself before snatching the recipe from her captors' hands and escaping out the kitchen window. Alas, I digress. Served with cream.</p>
+      </div>
+      <div class="clip-foot">
+        <span>2 min read</span>
+        <a href="#index">Back to index</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="clipping" id="christmas-message">
+    <div class="clipping-inner">
+      <span class="stamp">Clipping No. 03</span>
+      <p class="clip-date">24 December 2021 · short story</p>
+      <h2 class="clip-title">The Christmas Message</h2>
+      <hr class="tear">
+      <div class="clip-body">
+        <p>The bell signifying last orders had long since tolled. He bid his drinking partners farewell, each as lonely as he, and wearily he inched through those heavy double doors into the dark, snowy December's night. The snowfall of that roaring blizzard was illuminated bright yellow by the flickering street lamps of the Cathedral Quarter. It was ever so cold and not a single driver dared attempt to negotiate the treacherous road that would take him from the bustling megalopolis of Derby to his modest home in Duffield. They said he'd never make it, but nay, he simply had to try. Off he marched down that snowy road through the howling, ice cold wind. Before long he grew weak, the cold of that dark night creeping its way into his very bones. On he walked, until walk he could no longer; you see, every last drop of energy had been sapped from within him by the roaring elements of the night. Yet he refused to let this get in the way of his Christmas message being preached to the disciples of that small village on the banks of the river Derwent. He saw a light in the distance, atop a faraway hill. On all fours he hurled himself up to that lordly plateau at the top of the hill, in the middle of that hallowed golf course. You could barely call it a knock on the door, he could muster but a faint scratch. The residents of this house on the hill ran to open the front door and were shocked by what they saw, a man so battered and bruised, so overcome with frost bite that he could barely speak, on this darkest of Christmas eves. It was clear that the man was going to die in mere seconds, yet he had seemed to have a half-delirious urgency about him. He was adamant that the Christmas message must be relayed. He started to choke and fell back onto the hard ground, using all the energy he had left to faintly cough out those sacred words, "have you read Sapiens?".</p>
+      </div>
+      <div class="clip-foot">
+        <span>2 min read</span>
+        <a href="#index">Back to index</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="clipping" id="western-chapter-one">
+    <div class="clipping-inner">
+      <span class="stamp">Clipping No. 04</span>
+      <p class="clip-date">9 September 2021 · fiction</p>
+      <h2 class="clip-title">Western: Chapter One</h2>
+      <hr class="tear">
+      <div class="clip-body">
+        <p>They passed rivers ebbing and flowing and gouging and oozing. They passed mountains rolling and ranging, their jagged edges cutting into the bright haze of the day. They rode on and on, past valleys deep and dark, like harsh scars incised into the earth on which they rode, by a surgeon of some other worldly order. They rode through dense and green woodland, negotiating steep ravines awash with aspen and pinon and oak as solid as any they'd seen previous, as solid as The Lord's own fist would likely be. On they rode. They rode on and on and on and on, half crazed by the beating, brutish sun above; by the powerful natural ruler of the unforgiving, baron country that had chewed them up and spat them out battered and bruised and black and blue, the ruler they'd developed an inexplicable fondness for through all the trials it had thrown their way in the weeks gone by. They passed old pueblos that had been ransacked and gutted and left smoldering by the Comanches, with adobe mud huts almost melted into the dark red ground, and the remains of women and children left impaled and disfigured by the beasts they had been tracking all this time. Faint, faraway war cries prompted them to look southerly, where they could just about make out an emergence of a sea of dust and horses atop the distant mesa. No man spoke.</p>
+      </div>
+      <div class="clip-foot">
+        <span>1 min read</span>
+        <a href="#index">Back to index</a>
+      </div>
+    </div>
+  </article>
+
+  <article class="clipping" id="furthest-from-home">
+    <div class="clipping-inner">
+      <span class="stamp">Clipping No. 05</span>
+      <p class="clip-date">14 May 2021 · personal essay</p>
+      <h2 class="clip-title">The Furthest From Home I Have Ever Been</h2>
+      <hr class="tear">
+      <div class="clip-body">
+        <p>I begged my housemate to give me my Instagram password so I could scroll freely once again. Jack! he protested, you told me not to give it to you under any circumstance. You know what happens. Please, I begged, just five minutes. Ok, he conceded, as he bashed angrily at the keyboard.</p>
+
+        <p>As I walked out the door to fetch my daily flat white, I opened Instagram. My line of sight hit the timeline, a fire lit in my retinas and my eyes were clasped to the screen of my iPhone. From this point I was oblivious to all around me. I scrolled frantically, not realising that I'd boarded the 88 bus to Heathrow.</p>
+
+        <p>I scrolled and scrolled and scrolled still, getting deeper and deeper into a wormhole of influencers, memes and hashtag laden posts by girls from school who now have five kids, several fake Gucci bags and none of their own breasts. I was entranced in my virtual world as the shuttle bus glided across the tarmac. I boarded the Airbus A380 and plonked myself into an aisle seat, totally unaware of the world around me and the predicament I'd gotten myself into.</p>
+
+        <p>I went deeper and deeper into the web, further and further and further and further into the darkest corners of social media, polluting my mind with unrealistic expectations of life, warping my mental wellbeing with aggressively airbrushed images of plastic girls, sculpted bodies and dentures straight out of Turkey. I was completely oblivious to the vast Atlantic Ocean glistening below, utterly clueless as the plane touched down at the NASA headquarters.</p>
+
+        <p>My interest was pricked by a particularly provocative picture of a cat draped in a sombrero as I was hurried through the site and a team made up of the brightest minds in astrophysics kitted me out in a state of the art space suit. They fastened me into my seat at the helm of the rocket, before counting down to lift off. I was propelled at full throttle through the stratosphere and into outer space.</p>
+
+        <p>Still in my own world, metaphorically if not geographically, I howled with laughter at a meme of an Audi wearing a cowboy hat with the caption 'Haudi'. I was engrossed as ever as I landed on Mars. I walked around for a bit whilst stalking an ex, and then happened to enter an anomaly in the space time continuum that transported me home in an instant. You were gone a while, said Matt, but I just shrugged my shoulders. Realising I didn't get my coffee, I headed out whilst opening Twitter.</p>
+      </div>
+      <div class="clip-foot">
+        <span>3 min read</span>
+        <a href="#index">Back to index</a>
+      </div>
+    </div>
+  </article>
+
+</main>
+
+<footer>
+  <p class="f-title">More stray clippings, eventually</p>
+  <p>This is a small, occasional archive. New pieces get added when there's something worth keeping.</p>
+  <a class="mail" href="mailto:jackbeevers@hotmail.co.uk">jackbeevers@hotmail.co.uk</a>
+  <p class="copy">© 2026 JACK BEEVERS — STRAY CLIPPINGS</p>
+</footer>
+
+<script>
+  const clippings = document.querySelectorAll('.clipping');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+  clippings.forEach(c=>io.observe(c));
+</script>
+
+</body>
+</html>
