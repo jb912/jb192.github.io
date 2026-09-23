@@ -1,315 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Stray Sounds — Jack Beevers</title>
-  <meta name="description" content="Stray Sounds — coming soon.">
+<title>Stray Sounds — Jack Beevers</title>
+<meta name="description" content="Stray Sounds by Jack Beevers.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --paper: #F7F3EA;
-      --paper-card: #FCFAF4;
-      --ink: #221F1A;
-      --ink-soft: #4A453D;
-      --muted: #837A6C;
-      --rule: #DCD4C2;
-      --accent: #2F4436;
-      --accent-soft: #E4E7DE;
-      --stamp: #8C3A2A;
-    }
+<style>
+  :root{
+    --paper: #F7F3EA;
+    --paper-card: #FCFAF4;
+    --ink: #221F1A;
+    --ink-soft: #4A453D;
+    --muted: #837A6C;
+    --rule: #DCD4C2;
+    --accent: #2F4436;
+    --accent-soft: #E4E7DE;
+    --stamp: #8C3A2A;
+  }
 
-    *{
-      box-sizing:border-box;
-    }
+  *{
+    box-sizing:border-box;
+  }
 
-    html{
-      scroll-behavior:smooth;
-    }
+  html{
+    scroll-behavior:smooth;
+  }
 
-    body{
-      margin:0;
-      background:var(--paper);
-      color:var(--ink);
-      font-family:'Newsreader', serif;
-      font-size:18px;
-      line-height:1.7;
-      -webkit-font-smoothing:antialiased;
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Newsreader', serif;
+    font-size:18px;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
 
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
-    }
+  a{
+    color:var(--accent);
+    text-decoration-thickness:1px;
+    text-underline-offset:3px;
+  }
 
-    a{
-      color:var(--accent);
-      text-decoration-thickness:1px;
-      text-underline-offset:3px;
-    }
+  a:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
 
-    a:focus-visible{
-      outline:2px solid var(--accent);
-      outline-offset:3px;
-    }
+  .site-nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+    background:rgba(247,243,234,0.92);
+    backdrop-filter:saturate(150%) blur(6px);
+    border-bottom:1px solid var(--rule);
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    z-index:50;
+  }
 
-    /* Navigation */
+  .site-nav .nav-links{
+    display:flex;
+    gap:22px;
+    width:100%;
+    justify-content:center;
+  }
+
+  .site-nav .nav-links a{
+    color:var(--muted);
+    text-decoration:none;
+    padding-bottom:3px;
+    border-bottom:1px solid transparent;
+    transition:color .2s ease, border-color .2s ease;
+  }
+
+  .site-nav .nav-links a:hover{
+    color:var(--ink);
+  }
+
+  .site-nav .nav-links a.active{
+    color:var(--ink);
+    border-bottom-color:var(--stamp);
+  }
+
+  body{
+    padding-top:52px;
+  }
+
+  .hero{
+    padding:min(18vh,140px) 24px 64px;
+    text-align:center;
+  }
+
+  h1.title{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(2.6rem, 9vw, 4.6rem);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+
+  .sounds-content{
+    max-width:748px;
+    margin:0 auto;
+    padding:0 24px 140px;
+  }
+
+  .sounds-divider{
+    border:none;
+    border-top:1px dashed var(--rule);
+    margin:0 0 72px;
+  }
+
+  .coming-soon{
+    text-align:center;
+    font-family:'Space Mono', monospace;
+    font-size:14px;
+    color:var(--muted);
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+  }
+
+  footer{
+    padding:80px 24px 60px;
+    text-align:center;
+    border-top:1px solid var(--rule);
+  }
+
+  footer a.back{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid var(--accent);
+    padding-bottom:2px;
+  }
+
+  footer .copy{
+    margin-top:48px;
+    font-family:'Space Mono', monospace;
+    font-size:10.5px;
+    color:var(--muted);
+    letter-spacing:0.05em;
+  }
+
+  @media (max-width:700px){
 
     .site-nav{
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-
-      padding:16px 24px;
-
-      background:rgba(247,243,234,0.92);
-      backdrop-filter:saturate(150%) blur(6px);
-
-      border-bottom:1px solid var(--rule);
-
-      font-family:'Space Mono', monospace;
-      font-size:12px;
-      letter-spacing:0.06em;
-      text-transform:uppercase;
-
-      z-index:50;
+      padding:16px 20px;
     }
 
     .site-nav .nav-links{
-      display:flex;
-      gap:22px;
+      width:100%;
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:0;
     }
 
     .site-nav .nav-links a{
-      color:var(--muted);
-      text-decoration:none;
-
-      padding-bottom:3px;
-
-      border-bottom:1px solid transparent;
-
-      transition:
-        color .2s ease,
-        border-color .2s ease;
+      min-width:0;
+      text-align:center;
+      white-space:normal;
+      line-height:1.9;
+      padding:0 4px 3px;
     }
 
-    .site-nav .nav-links a:hover{
-      color:var(--ink);
-    }
+  }
 
-    .site-nav .nav-links a.active{
-      color:var(--ink);
-      border-bottom-color:var(--stamp);
-    }
+  @media (max-width:480px){
 
     body{
-      padding-top:52px;
+      font-size:17px;
     }
 
-    /* Main */
-
-    main{
-      flex:1;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      text-align:center;
-
-      padding:80px 24px;
+    .hero{
+      padding:min(18vh,140px) 20px 64px;
     }
 
-    .coming-soon{
-      width:100%;
-      max-width:700px;
-
-      opacity:0;
-      transform:translateY(18px);
-
-      animation:
-        appear .8s ease forwards;
+    .sounds-content{
+      padding:0 20px 100px;
     }
-
-    @keyframes appear{
-      to{
-        opacity:1;
-        transform:translateY(0);
-      }
-    }
-
-    h1.title{
-      font-family:'Fraunces', serif;
-      font-optical-sizing:auto;
-      font-weight:600;
-
-      font-size:clamp(2.6rem, 9vw, 4.6rem);
-
-      line-height:0.98;
-      letter-spacing:-0.01em;
-
-      margin:0 0 42px;
-    }
-
-    .tear{
-      border:none;
-      border-top:1px dashed var(--rule);
-
-      max-width:360px;
-
-      margin:0 auto 42px;
-    }
-
-    .message{
-      margin:0;
-
-      font-family:'Space Mono', monospace;
-      font-size:13px;
-      letter-spacing:0.28em;
-      text-transform:uppercase;
-
-      color:var(--muted);
-    }
-
-    /* Footer */
 
     footer{
-      padding:64px 24px 60px;
-
-      text-align:center;
-
-      border-top:1px solid var(--rule);
+      padding:80px 20px 60px;
     }
 
-    footer a.back{
-      font-family:'Space Mono', monospace;
-      font-size:13px;
-
-      color:var(--accent);
-
-      text-decoration:none;
-
-      border-bottom:1px solid var(--accent);
-
-      padding-bottom:2px;
-    }
-
-    footer .copy{
-      margin:40px 0 0;
-
-      font-family:'Space Mono', monospace;
-      font-size:10.5px;
-
-      color:var(--muted);
-
-      letter-spacing:0.05em;
-    }
-
-    /* Mobile */
-
-    @media (max-width:480px){
-
-      body{
-        font-size:17px;
-      }
-
-      .site-nav{
-        padding:16px 18px;
-      }
-
-      .site-nav .nav-links{
-        gap:14px;
-      }
-
-      .site-nav .nav-links a{
-        font-size:10px;
-      }
-
-      main{
-        padding:60px 20px;
-      }
-
-      h1.title{
-        margin-bottom:34px;
-      }
-
-      .tear{
-        margin-bottom:34px;
-      }
-
-      .message{
-        font-size:11px;
-        letter-spacing:0.22em;
-      }
-
-      footer{
-        padding:54px 20px 50px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-
-      html{
-        scroll-behavior:auto;
-      }
-
-      .coming-soon{
-        animation:none;
-        opacity:1;
-        transform:none;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 
 <body>
 
-  <nav class="site-nav">
-    <span class="nav-links">
-      <a href="index.html">Stray Clippings</a>
-      <a href="mini-clippings.html">Mini Clippings</a>
-      <a href="stray-sounds.html" class="active">Stray Sounds</a>
-       <a href="stray-store.html">Stray Store</a>
-    </span>
-  </nav>
+<nav class="site-nav">
+  <span class="nav-links">
+    <a href="index.html">Stray Clippings</a>
+    <a href="mini-clippings.html">Mini Clippings</a>
+    <a href="stray-sounds.html" class="active">Stray Sounds</a>
+    <a href="stray-store.html">Stray Store</a>
+  </span>
+</nav>
 
+<header class="hero">
+  <h1 class="title">Stray<br>Sounds</h1>
+</header>
 
-  <main>
+<main class="sounds-content">
 
-    <section class="coming-soon">
+  <hr class="sounds-divider">
 
-      <h1 class="title">Stray<br>Sounds</h1>
+  <div class="coming-soon">
+    Coming Soon
+  </div>
 
-      <hr class="tear">
+</main>
 
-      <p class="message">Coming Soon</p>
+<footer>
 
-    </section>
+  <a href="index.html" class="back">
+    ← Back to Stray Clippings
+  </a>
 
-  </main>
+  <div class="copy">
+    © 2026 JACK BEEVERS — STRAY CLIPPINGS
+  </div>
 
-
-  <footer>
-
-    <a class="back" href="index.html">
-      ← Back to Stray Clippings
-    </a>
-
-    <p class="copy">
-      © 2026 JACK BEEVERS — STRAY CLIPPINGS
-    </p>
-
-  </footer>
-
+</footer>
 
 </body>
 </html>
