@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Stray Store — Jack Beevers</title>
-  <meta name="description" content="The Stray Store — books, prints and other stray things.">
+  <meta name="description" content="A small collection of stray things.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +19,7 @@
       --muted: #837A6C;
       --rule: #DCD4C2;
       --accent: #2F4436;
+      --accent-soft: #E4E7DE;
       --stamp: #8C3A2A;
     }
 
@@ -39,6 +39,7 @@
       font-size:18px;
       line-height:1.6;
       -webkit-font-smoothing:antialiased;
+      padding-top:52px;
     }
 
     a{
@@ -46,6 +47,13 @@
       text-decoration-thickness:1px;
       text-underline-offset:3px;
     }
+
+    a:focus-visible{
+      outline:2px solid var(--accent);
+      outline-offset:3px;
+    }
+
+    /* Navigation */
 
     .site-nav{
       position:fixed;
@@ -72,31 +80,32 @@
       z-index:50;
     }
 
-    .nav-links{
+    .site-nav .nav-links{
       display:flex;
       gap:22px;
     }
 
-    .nav-links a{
+    .site-nav .nav-links a{
       color:var(--muted);
       text-decoration:none;
       padding-bottom:3px;
       border-bottom:1px solid transparent;
-      transition:color .2s ease, border-color .2s ease;
+
+      transition:
+        color .2s ease,
+        border-color .2s ease;
     }
 
-    .nav-links a:hover{
+    .site-nav .nav-links a:hover{
       color:var(--ink);
     }
 
-    .nav-links a.active{
+    .site-nav .nav-links a.active{
       color:var(--ink);
       border-bottom-color:var(--stamp);
     }
 
-    body{
-      padding-top:52px;
-    }
+    /* Hero */
 
     .hero{
       padding:min(16vh,120px) 24px 56px;
@@ -118,6 +127,8 @@
       color:var(--ink-soft);
       font-size:1.05rem;
     }
+
+    /* Products */
 
     .store{
       max-width:900px;
@@ -160,15 +171,18 @@
     .product-image{
       aspect-ratio:1 / 1;
       background:var(--accent-soft);
+
       display:flex;
       align-items:center;
       justify-content:center;
+
       margin-bottom:22px;
 
       font-family:'Space Mono', monospace;
       font-size:11px;
       letter-spacing:.08em;
       text-transform:uppercase;
+
       color:var(--muted);
     }
 
@@ -218,6 +232,8 @@
       transform:translateY(-1px);
     }
 
+    /* Footer */
+
     footer{
       padding:64px 24px 60px;
       text-align:center;
@@ -241,6 +257,8 @@
       letter-spacing:.05em;
     }
 
+    /* Tablet */
+
     @media (max-width:700px){
 
       .products{
@@ -249,14 +267,16 @@
         margin:0 auto;
       }
 
-      .nav-links{
+      .site-nav .nav-links{
         gap:12px;
       }
 
-      .nav-links a{
+      .site-nav .nav-links a{
         font-size:10px;
       }
     }
+
+    /* Mobile */
 
     @media (max-width:480px){
 
@@ -264,11 +284,11 @@
         padding:16px 14px;
       }
 
-      .nav-links{
+      .site-nav .nav-links{
         gap:9px;
       }
 
-      .nav-links a{
+      .site-nav .nav-links a{
         font-size:9px;
       }
 
@@ -310,13 +330,11 @@
 
 
   <header class="hero">
-
     <h1 class="title">Stray<br>Store</h1>
 
     <p class="intro">
-      Books, prints and other stray things.
+      A small collection of stray things.
     </p>
-
   </header>
 
 
@@ -327,13 +345,13 @@
       <article class="product">
 
         <div class="product-image">
-          Product image
+          Item 1
         </div>
 
-        <h2>Stray Clippings</h2>
+        <h2>Item 1</h2>
 
         <p>
-          A collection of writing, observations and other assorted nonsense.
+          A stray item from the Stray Store.
         </p>
 
         <div class="price">
@@ -350,13 +368,13 @@
       <article class="product">
 
         <div class="product-image">
-          Product image
+          Item 2
         </div>
 
-        <h2>Stray Print</h2>
+        <h2>Item 2</h2>
 
         <p>
-          A little piece of Stray Clippings for your wall.
+          A stray item from the Stray Store.
         </p>
 
         <div class="price">
@@ -373,13 +391,13 @@
       <article class="product">
 
         <div class="product-image">
-          Product image
+          Item 3
         </div>
 
-        <h2>Something Stray</h2>
+        <h2>Item 3</h2>
 
         <p>
-          More things to come from the Stray Store.
+          A stray item from the Stray Store.
         </p>
 
         <div class="price">
