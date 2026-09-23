@@ -76,8 +76,6 @@
   .site-nav .nav-links{
     display:flex;
     gap:22px;
-    width:100%;
-    justify-content:center;
   }
 
   .site-nav .nav-links a{
@@ -103,7 +101,7 @@
 
   .hero{
     padding:min(18vh,140px) 24px 64px;
-    text-align:centre;
+    text-align:center;
   }
 
   h1.title{
@@ -228,15 +226,12 @@
     }
 
     .site-nav .nav-links{
-      width:100%;
-      display:grid;
-      grid-template-columns:repeat(4, 1fr);
-      gap:0;
+      display:flex;
+      gap:22px;
     }
 
     .site-nav .nav-links a{
       min-width:0;
-      text-align:center;
       white-space:normal;
       line-height:1.9;
       padding:0 4px 3px;
@@ -257,11 +252,13 @@
 
     .hero{
       padding:min(18vh,140px) 20px 64px;
+      text-align:center;
     }
 
     .intro{
       padding:0 20px;
       margin-top:56px;
+      text-align:center;
     }
 
     .store{
@@ -292,11 +289,13 @@
 </nav>
 
 <header class="hero">
+
   <h1 class="title">Stray<br>Store</h1>
 
   <p class="intro">
     Books, prints and other stray things.
   </p>
+
 </header>
 
 <main class="store">
